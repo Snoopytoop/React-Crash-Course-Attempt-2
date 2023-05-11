@@ -2,9 +2,11 @@ import "./App.css";
 import Title from "./components/Title";
 import Todo from "./components/Todo";
 import Modal from "./components/Modal";
+import React, { useState } from "react";
 
 function App() {
-  let isModalOpen = true
+  const [showModal, setShowModal] = useState(false)
+  
 
   return (
     <>
@@ -13,14 +15,14 @@ function App() {
         <input type="text" onChange={(event) => {
           console.log(event.target.value)
         }} />
-        <button>Add todo</button>
+        <button onClick={() => setShowModal(true)}>Add todo</button>
       </div>
       <div className="todo__wrapper">
         <Todo title="Finish Frontend Simplified" />
         <Todo title="Finish Interview Section" />
         <Todo title="Land a $100k Job" />
       </div>
-      {isModalOpen ? <Modal question="Are you sure?"/> : null}
+      {showModal && <Modal question="Are you sure?"/>}
     </>
   );
 }
